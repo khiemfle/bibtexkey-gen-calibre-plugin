@@ -9,6 +9,7 @@ from calibre.gui2.actions import InterfaceAction
 from calibre.customize import InterfaceActionBase
 from calibre.gui2 import error_dialog
 from calibre.ebooks.metadata.meta import get_metadata, set_metadata
+from gen.gen import *
 
 class InterfacePluginBase(InterfaceActionBase):
     name                = 'Add Google style Bibtex key'
@@ -59,36 +60,8 @@ class AddGoogleStyleBibTexKey(InterfaceAction):
 
                     # db.author.last_name + db.published.year + db.first two words of the book title in lower case, for example: punamusta2020were
 
-                    print(mi.authors)
+                    generated_bibtex_key = generate_bibtex(mi.authors, mi.pubdate, mi.title)
 
-                    print(mi.authors[0])
-
-                    print(mi.authors[0].split(", "))
-
-                    first_author = mi.authors[0].split(", ")[0].split(" ")
-                    first_author_name = first_author[0]
-                    if len(first_author) > 1:
-                        first_author_name = first_author[len(first_author)-1]
-
-                    print(first_author_name)
-
-                    print(mi.pubdate)
-                    published_year = mi.pubdate.year
-
-                    print(published_year)
-
-                    print(mi.title)
-                    book_title_words = mi.title.split(" ")
-
-                    print(book_title_words)
-
-                    book_title_first_words = book_title_words[0] + book_title_words[1]
-
-                    print(book_title_first_words)
-
-                    generated_bibtex_key = (first_author_name + str(published_year) + book_title_first_words).lower()
-
-                    print(generated_bibtex_key)
                     db.set_custom(book_id, generated_bibtex_key, label=label, commit=True)
         # thanks to Kovid Goyal for the following line, also for Calibre in general
         self.gui.iactions['View']._view_calibre_books = add_google_style_bibtex_key
