@@ -2,7 +2,7 @@ from functools import reduce
 
 articles = ["a", "an", "the"]
 
-special_chars = [":", "'", "`", "-", "_", "&", "."]
+special_chars = [":", "'", "`", "´", "-", "_", "&", "."]
 
 def generate_bibtex(authors, published, book_title):
     print(authors)
