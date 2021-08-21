@@ -2,14 +2,10 @@ from functools import reduce
 
 articles = ["a", "an", "the"]
 
-special_chars = [":", "-", "_", "&"]
+special_chars = [":", "'", "`", "-", "_", "&", "."]
 
 def generate_bibtex(authors, published, book_title):
     print(authors)
-
-    print(authors[0])
-
-    print(authors[0].split(", "))
 
     nomalized_authors = authors[0].replace("&,", ",").replace(", ", ",").replace("&", ",").replace(";", ",")
 
@@ -31,14 +27,19 @@ def generate_bibtex(authors, published, book_title):
     for sc in special_chars:
         book_title_words = list(map(lambda x: x.replace(sc, ""), book_title_words))
 
+    print(map(lambda x: x[0], book_title_words))
+    first_letter_group = "".join(list(map(lambda x: x[0] if len(x) > 0 else "", book_title_words)))
+
     book_title_words = list(filter(lambda x: x.lower() not in articles, book_title_words))
 
     print(book_title_words)
 
     if len(book_title_words) == 2:
         book_title_first_words = book_title_words[0] + "-" + book_title_words[1]
-    else:
+    elif len(book_title_words) == 1:
         book_title_first_words = book_title_words[0]
+    else:
+        book_title_first_words = book_title_words[0] + "-" + first_letter_group
 
     print(book_title_first_words)
 
