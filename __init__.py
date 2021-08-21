@@ -9,7 +9,7 @@ from calibre.gui2.actions import InterfaceAction
 from calibre.customize import InterfaceActionBase
 from calibre.gui2 import error_dialog
 from calibre.ebooks.metadata.meta import get_metadata, set_metadata
-from gen.gen import *
+from calibre_plugins.add_google_style_bibtex_key.gen import gen
 
 class InterfacePluginBase(InterfaceActionBase):
     name                = 'Add Google style Bibtex key'
@@ -54,13 +54,13 @@ class AddGoogleStyleBibTexKey(InterfaceAction):
 
                 print(current_bibtex)
 
-                if current_bibtex == '':
+                if current_bibtex == '' or current_bibtex is None:
                     # https://github.com/kovidgoyal/calibre/blob/3dd95981398777f3c958e733209f3583e783b98c/src/calibre/db/legacy.py
                     mi = db.get_metadata(book_id, index_is_id=True, get_cover=False, cover_as_data=False)
 
                     # db.author.last_name + db.published.year + db.first two words of the book title in lower case, for example: punamusta2020were
 
-                    generated_bibtex_key = generate_bibtex(mi.authors, mi.pubdate, mi.title)
+                    generated_bibtex_key = gen.generate_bibtex(mi.authors, mi.pubdate, mi.title)
 
                     db.set_custom(book_id, generated_bibtex_key, label=label, commit=True)
         # thanks to Kovid Goyal for the following line, also for Calibre in general
