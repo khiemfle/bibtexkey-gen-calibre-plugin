@@ -2,17 +2,19 @@ from functools import reduce
 
 articles = ["a", "an", "the"]
 
-special_chars = [":", "'", "`", "´", "-", "_", "&", "."]
+special_chars = [":", "'", "`", "´", "-", "_", "&", ".", "(", ")", "/"]
 
 def generate_bibtex(authors, published, book_title):
     print(authors)
 
     nomalized_authors = authors[0].replace("&,", ",").replace(", ", ",").replace("&", ",").replace(";", ",")
 
-    first_author = nomalized_authors.split(",")[0].split(" ")
-    first_author_last_name = first_author[0]
-    if len(first_author) > 1:
-        first_author_last_name = first_author[len(first_author)-1]
+    first_authors = nomalized_authors.split(",")
+    first_authors = list(map(lambda x: x.strip(), first_authors))
+    first_author_names = first_authors[0].split(" ")
+    first_author_last_name = first_author_names[0]
+    if len(first_author_names) > 1:
+        first_author_last_name = first_author_names[len(first_author_names)-1]
 
     print(first_author_last_name)
 
