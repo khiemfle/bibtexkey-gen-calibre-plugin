@@ -23,5 +23,5 @@ def test_generate_bibtex6():
 def test_generate_bibtex7():
     assert("author2019were-wrc" == gen.generate_bibtex(["An author"], datetime.datetime(2019, 7, 1), "We´re really cool"))
 
-def test_generate_bibtex7():
+def test_generate_bibtex8():
     assert("katz2019introduction-itmcpapchcanss" == gen.generate_bibtex(["Jonathan Katz & Yehuda Lindell"], datetime.datetime(2019, 7, 1), "Introduction to Modern Cryptography: Principles and Protocols (Chapman & Hall/CRC Cryptography and Network Security Series)"))
