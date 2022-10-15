@@ -5,4 +5,4 @@ Some examples can be see in this tests: [tests/test_gen.py](tests/test_gen.py)
 
 The **build** and debug script currently support Windows environment that has 7zip installed.
 
-For other environment like MacOS, a zip file with anyname that contains files include _init_.py, 
+The zip file can be used directly in this repo to import to Calibre.
