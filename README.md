@@ -6,3 +6,5 @@ Some examples can be see in this tests: [tests/test_gen.py](tests/test_gen.py)
 The **build** and debug script currently support Windows environment that has 7zip installed.
 
 The add-google-style-bibtex-key.zip file can be used directly in this repo to import to Calibre.
+
+The plugin can be installed easily to Calibre by going to: Calibre -> Preferences -> Plugins -> Load Plugin from file.
